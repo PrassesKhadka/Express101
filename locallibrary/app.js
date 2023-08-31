@@ -10,7 +10,16 @@ var usersRouter = require('./routes/users');
 // Importing the cool route
 var coolRouter=require('./routes/cool')
 
-var app = express();
+const app = express();
+// Set up mongoose connection
+const mongoose = require("mongoose");
+mongoose.set("strictQuery", false);
+const mongoDB = "mongodb://127.0.0.1/my_database";
+
+main().catch((err) => console.log(err));
+async function main() {
+  await mongoose.connect(mongoDB);
+}
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
