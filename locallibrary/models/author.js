@@ -2,7 +2,7 @@
 const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
-
+const {DateTime}=require("luxon")
 const AuthorSchema = new Schema({
   first_name: { type: String, required: true, maxLength: 100 },
   family_name: { type: String, required: true, maxLength: 100 },
@@ -26,6 +26,15 @@ AuthorSchema.virtual("url").get(function () {
   // We don't use an arrow function as we'll need the this object
   return `/catalog/author/${this._id}`;
 });
+
+// Virtual property for formatting date using luxon 
+AuthorSchema.virtual("date_of_birth_formatted").get(function(){
+  return DateTime.fromJSDate(this.date_of_birth).toLocaleString(DateTime.DATE_MED);
+})
+
+AuthorSchema.virtual("date_of_death_formatted").get(function(){
+  return DateTime.fromJSDate(this.date_of_death).toLocaleString(DateTime.DATE_MED);
+})
 
 // Export model
 module.exports = mongoose.model("Author", AuthorSchema);

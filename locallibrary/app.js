@@ -7,15 +7,14 @@ var logger = require("morgan");
 // Import the routes
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
-// Importing the cool route
-var coolRouter = require("./routes/cool");
-
+const catalogRouter=require("./routes/catalog")
 const app = express();
+
 // Set up mongoose connection
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
 const mongoDB =
-  "mongodb+srv://@cluster0.au8wbnt.mongodb.net/?retryWrites=true&w=majority";
+  "mongodb+srv://prassesrajkhadka:1D0nymmyMnTp6PME@cluster0.au8wbnt.mongodb.net/?retryWrites=true&w=majority";
 main().catch((err) => console.log(err));
 async function main() {
   await mongoose.connect(mongoDB);
@@ -34,7 +33,7 @@ app.use(express.static(path.join(__dirname, "public")));
 // Mount the users route at /users
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
-app.use("/users/cool", coolRouter);
+app.use("/catalog",catalogRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
