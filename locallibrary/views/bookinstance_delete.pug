@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  h1 #{title}
+    span #[strong Do you really want to delete this book instance?]
+    form(method='POST' action='')
+        div.form-group
+            button.btn.btn-primary(type='submit') Delete
+  
