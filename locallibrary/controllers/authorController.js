@@ -146,10 +146,39 @@ exports.author_delete_post = asyncHandler(async (req, res, next) => {
 
 // Display Author update form on GET.
 exports.author_update_get = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Author update GET");
+  const author=await Author.findById(req.params.id).exec()
+  res.render("author_form",{
+    title:"Author Update",
+    author:author,
+  })
 });
 
 // Handle Author update on POST.
-exports.author_update_post = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Author update POST");
-});
+exports.author_update_post = [
+  body("first_name","Must have at least 1 character").trim().notEmpty(),
+  body("family_name",'Must have at least 1 character').trim().notEmpty(),
+  body("date_of_birth").toDate(),
+  body("date_of_death").toDate(),
+  asyncHandler(async (req, res, next) => {
+    const errors=validationResult(req)
+    const author=new Author({
+      first_name:req.body.first_name,
+      family_name:req.body.family_name,
+      date_of_birth:req.body.date_of_birth,
+      date_of_death:req.body.date_of_death,
+      _id:req.params.id,
+    })
+
+    if(!errors.isEmpty())
+    {
+      res.render("author_form",{
+        title:'Author Update',
+        author:author
+      })
+    }
+    else{
+      await Author.findByIdAndUpdate(req.params.id,author,{}).exec()
+      res.redirect(author.url)
+    }
+  })
+];
