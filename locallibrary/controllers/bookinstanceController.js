@@ -130,7 +130,7 @@ exports.bookinstance_update_post =[
   .isISO8601()
   .toDate(),
   body("status").escape(),
-
+    
   asyncHandler(async (req, res, next) => {
     const errors=validationResult(req)
     const bookinstance=new BookInstance({
