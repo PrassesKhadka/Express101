@@ -1,7 +1,5 @@
-const { ExpressValidator } = require("express-validator");
 const Author = require("../models/author");
 const Book = require("../models/book");
-
 const asyncHandler = require("express-async-handler");
 const {body,validationResult}=require('express-validator')
 
@@ -147,6 +145,7 @@ exports.author_delete_post = asyncHandler(async (req, res, next) => {
 // Display Author update form on GET.
 exports.author_update_get = asyncHandler(async (req, res, next) => {
   const author=await Author.findById(req.params.id).exec()
+
   res.render("author_form",{
     title:"Author Update",
     author:author,
