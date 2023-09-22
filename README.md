@@ -1,6 +1,12 @@
 # Express101
 
-# The LocalLibrary website
+#  Built Using:
+- [Express](https://expressjs.com/)
+- [MongoDB Atlas](https://www.mongodb.com/atlas/database)/[mongoose](https://mongoosejs.com/)
+- [pug](https://pugjs.org/api/getting-started.html)
+- [railway](https://railway.app/)
+
+# The LocalLibrary website:
 
 - Provide an online catalog for a small local library, where users can browse available books and manage their accounts.
   <img src="https://raw.githubusercontent.com/mdn/express-locallibrary-tutorial/main/public/images/Library%20Website%20-%20Mongoose_Express.png">
@@ -14,10 +20,6 @@
 - Work with forms.
 - Deploy your application to production.
 
-# References
+# Reference:
 
 - [MDN Docs](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/Tutorial_local_library_website)
-- Setting up [Express application generator](https://expressjs.com/en/starter/generator.html)
-- [Pug](https://pugjs.org/api/getting-started.html) Template Engine
-- [SASS](https://sass-lang.com/) CSS stylesheet engine
-- [nodemon](https://nodemon.io/)
